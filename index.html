@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FTC 1123호 천정 누수사고 피해 증빙 사진 (2026-09-19/20)</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,'Malgun Gothic','Apple SD Gothic Neo',sans-serif;background:#0f1419;color:#e8eef2;line-height:1.6}
+  header{background:#1a2530;border-bottom:2px solid #c0392b;padding:24px 20px}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+  h1{font-size:22px} .sub{color:#9fb0bd;font-size:13.5px;margin-top:6px}
+  .info{background:#16202a;border:1px solid #2a3a48;border-radius:10px;padding:14px 18px;margin:18px 0;font-size:13px;color:#c3d0da}
+  .info b{color:#e8eef2}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;padding:10px 0 40px}
+  .cell{background:#16202a;border:1px solid #2a3a48;border-radius:8px;overflow:hidden;cursor:pointer;transition:transform .12s,border-color .12s}
+  .cell:hover{transform:translateY(-3px);border-color:#c0392b}
+  .cell img{width:100%;height:170px;object-fit:cover;display:block}
+  .cell .cap{padding:6px 10px;font-size:11.5px;color:#9fb0bd}
+  /* Lightbox */
+  #lb{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:100;align-items:center;justify-content:center;flex-direction:column}
+  #lb img{max-width:94vw;max-height:82vh;object-fit:contain;border-radius:6px}
+  #lb .bar{color:#e8eef2;padding:12px;font-size:13px}
+  #lb .close{position:absolute;top:14px;right:22px;font-size:34px;color:#fff;cursor:pointer}
+  #lb .nav{position:absolute;top:50%;transform:translateY(-50%);font-size:44px;color:#fff;cursor:pointer;user-select:none;padding:0 18px}
+  #lb .prev{left:6px} #lb .next{right:6px}
+  footer{border-top:1px solid #2a3a48;padding:16px 0;color:#7c8b97;font-size:12px;text-align:center}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <h1>🏢 FTC 1123호 천정 누수사고 — 피해 증빙 사진</h1>
+  <div class="sub">한양대학교 FTC(과학기술관) 1123호 · 생물정보및유전체연구실(BIGLab, 남진우 교수) · 사고일 2026-09-19(토)~09-20(일)</div>
+</div></header>
+<div class="wrap">
+  <div class="info">
+    <b>사고 개요</b> — 2026-09-19(토) 오전 상층부(FTC 1209–11호) 에어컨 밸브 개방으로 누수 발생, 9층→12층을 거쳐 <b>1123호 천정 석고보드가 물에 젖어 붕괴</b>.
+    컴퓨터·모니터·공기청정기·책상·연구서류 등 다수 피해. 아래는 현장 촬영 원본 사진(총 <b>25매</b>)이며, 피해보고·보상요구서의 증빙 자료입니다.
+    <br><b>※ 클릭하면 원본 크기로 확대됩니다.</b>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+<div id="lb">
+  <span class="close" onclick="closeLB()">&times;</span>
+  <span class="nav prev" onclick="nav(-1)">&#10094;</span>
+  <span class="nav next" onclick="nav(1)">&#10095;</span>
+  <img id="lbimg" src="">
+  <div class="bar" id="lbbar"></div>
+</div>
+<footer class="wrap">FTC 1123호 누수사고 증빙 · 촬영 2026-09-19~20 · 본 페이지는 피해보상 증빙 목적의 사진 아카이브입니다.</footer>
+<script>
+const PHOTOS=["20260920_192913.jpg","20260920_192927.jpg","IMG_1894.jpg","IMG_1895.jpg","IMG_1896.jpg","IMG_1898.jpg","IMG_1901.jpg","IMG_1902.jpg","IMG_1904.jpg","IMG_1907.jpg","IMG_1908.jpg","IMG_1909.jpg","IMG_6791.jpg","IMG_6792.jpg","IMG_6794.jpg","IMG_6795.jpg","IMG_6796.jpg","IMG_6797.jpg","IMG_6798.jpg","IMG_6799.jpg","IMG_6800.jpg","IMG_6801.jpg","IMG_6802.jpg","IMG_6803.jpg","IMG_6804.jpg",];
+let cur=0;
+const grid=document.getElementById('grid');
+grid.innerHTML=PHOTOS.map((f,i)=>`<div class="cell" onclick="openLB(${i})"><img loading="lazy" src="photos/${f}"><div class="cap">사진 ${i+1} · ${f}</div></div>`).join('');
+const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbbar=document.getElementById('lbbar');
+function openLB(i){cur=i;lbimg.src='photos/'+PHOTOS[i];lbbar.textContent=(i+1)+' / '+PHOTOS.length+' · '+PHOTOS[i];lb.style.display='flex';}
+function closeLB(){lb.style.display='none';}
+function nav(d){cur=(cur+d+PHOTOS.length)%PHOTOS.length;openLB(cur);}
+document.addEventListener('keydown',e=>{if(lb.style.display==='flex'){if(e.key==='Escape')closeLB();if(e.key==='ArrowRight')nav(1);if(e.key==='ArrowLeft')nav(-1);}});
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+</script>
+</body>
+</html>
